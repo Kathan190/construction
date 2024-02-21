@@ -11,13 +11,6 @@ def index(request):
         email = request.POST.get("email")
         phone = request.POST.get("phone")
         message = request.POST.get("message")
-        send_mail(
-            'Contact Form',
-            message,
-            'settings.EMAIL_HOST_USER',
-            [email],
-            fail_silently=False
-        )
         contact = Contact(name=name, email=email, phone=phone, message=message)
         contact.save()
         
