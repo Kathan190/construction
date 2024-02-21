@@ -3,6 +3,7 @@ from Home.models import Contact
 from Home.models import Information
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib import messages
 
 # Create your views here.
 def index(request):
@@ -13,6 +14,7 @@ def index(request):
         message = request.POST.get("message")
         contact = Contact(name=name, email=email, phone=phone, message=message)
         contact.save()
+        messages.success(request, "Your message has been sent succesfully")
         
     return render(request, 'index.html')
 
